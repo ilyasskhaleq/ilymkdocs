@@ -1,0 +1,24 @@
+/* Controlar el tamaño de todas las imágenes */
+img {
+    justify-content: right;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;  /* Máximo 80% del ancho disponible */
+    height: auto;    /* Mantiene la relación de aspecto original */
+}
+
+/* Ocultar la barra lateral */
+.md-sidebar {
+    display: none;
+}
+
+/* Asegurar que el contenido principal ocupe el 100% del ancho */
+.md-main {
+    width: 100%;
+}
+
+/* Opcional: Si quieres que la navegación se alinee a la derecha, ajusta los márgenes */
+.md-header-nav {
+    justify-content: right;
+}

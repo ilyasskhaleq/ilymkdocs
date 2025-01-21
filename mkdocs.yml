@@ -1,0 +1,16 @@
+site_name: Ilyass Khaleq Mansourui
+theme:
+  name: "ivory"
+
+
+
+extra_css:
+  - css/extra.css
+
+
+
+nav:
+  - Introducción: introduccio.md
+  - Ubuntu:
+      - Sprint 2: sprint2.md
+      - Sprint 3: sprint3.md
