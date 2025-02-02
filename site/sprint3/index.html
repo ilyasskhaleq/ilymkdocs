@@ -43,9 +43,14 @@
                     <li class="toctree-l1"><button class="section nav-item">Ubuntu</button>
 <ul class="subnav">
     <li class="toctree-l2"><a class="nav-item" href="../sprint2/">Sprint 2</a></li>
-    <li class="toctree-l2 current">
-<a class="nav-item current" href="./">Sprint 3</a>
+    <li class="toctree-l2 current"><a class="nav-item current" href="./">Sprint 3</a>
 <ul class="subnav">
+<li class="toctree-l3"><a class="nav-item toc" href="#installacio-domini-ldap">Instal·lació domini LDAP</a></li>
+<li class="toctree-l3"><a class="nav-item toc" href="#unir-equips-al-domini">Unir equips al domini</a></li>
+<li class="toctree-l3"><a class="nav-item toc" href="#gestio-de-domini">Gestió de domini</a></li>
+<li class="toctree-l3"><a class="nav-item toc" href="#entorns-grafics">Entorns gràfics</a></li>
+<li class="toctree-l3"><a class="nav-item toc" href="#servidors-smb">Servidors SMB</a></li>
+<li class="toctree-l3"><a class="nav-item toc" href="#servidors-nfs">Servidors NFS</a></li>
 </ul></li>
 </ul></li>
                 </ul>
@@ -66,11 +71,123 @@
     <li>Ubuntu</li>
 </ul>
 </nav>
-                <div id="content"><p>Instal·lació domini LDAP
-Gestió de domini
-Entorns gràfics
-Servidors SMB 
-Servidors NFS</p></div>
+                <div id="content"><h1 id="introduccio">Introducció</h1>
+<p>En aquest Sprint treballarem amb un Server i diferents Clients( windows, Ubuntu), En primer lloc,
+Instal·larem el domini LDAP i el configurarem, després Gestionarem el domini, Entorns grafics i finalment treballarem amb servidors SMB i nfs.</p>
+<h2 id="installacio-domini-ldap">Instal·lació domini LDAP</h2>
+<p>Per a fer la instal·lació d'un domini LDAP hem de configurar un servidor que ens servira 
+com a directori per getionar l'autenticació i autorització d'usuaris i recursos en una xarxa.</p>
+<p>Tenim dos formes de afegir el nostre domini una es en els arxius que descaragarem i la altra es la següent que es per la comanda reconfigure.
+En primer lloc Posem Xarxa NAT per poder tener connexió i que els clients puguin connectar-se.
+<img alt="Comanda" src="../imatgesSprint3/1.png" /></p>
+<p>Posem una ip estatica.
+<img alt="Comanda" src="../imatgesSprint3/2.png" />
+<img alt="Comanda" src="../imatgesSprint3/3.png" /></p>
+<p>Ho comprovem fents diferents pings.
+<img alt="Comanda" src="../imatgesSprint3/4.png" /></p>
+<p>Nem a l'ubicació següent i cambiem el nostre hostname en el meu cas ho he deixat per defecte.
+<img alt="Comanda" src="../imatgesSprint3/5.png" /></p>
+<p>Nem al arxiu Hosts i agreguem la nostra ip i el nostre domini que afegerim proximament.
+<img alt="Comanda" src="../imatgesSprint3/6.png" /></p>
+<p>Ara descarguem el paquet de LDAP
+<img alt="Comanda" src="../imatgesSprint3/7.png" /></p>
+<p>Fem uh dpkg-recongure slapd 
+<img alt="Comanda" src="../imatgesSprint3/8.png" /></p>
+<p>Posem que no volem omitir la conf.
+<img alt="Comanda" src="../imatgesSprint3/9.png" /></p>
+<p>Posem el nostre domini
+<img alt="Comanda" src="../imatgesSprint3/10.png" /></p>
+<p>Ara el nom de l'organització
+<img alt="Comanda" src="../imatgesSprint3/11.png" /></p>
+<p>Posem la contrasenya i la confirmem.</p>
+<p><img alt="Comanda" src="../imatgesSprint3/12.png" /></p>
+<p>Posem la opcio SÍ.Posem a guaradar la nova configuració.
+<img alt="Comanda" src="../imatgesSprint3/13.png" /></p>
+<p>Posem la opcio SÍ.Posem a guaradar la nova configuració. 
+<img alt="Comanda" src="../imatgesSprint3/14.png" />
+<img alt="Comanda" src="../imatgesSprint3/16.png" /></p>
+<p>Ara per comprovar les dades farem seguidament la comanda slapcat.
+<img alt="Comanda" src="../imatgesSprint3/16.png" /></p>
+<p>Nem al moodle i descarguem una carepta on tenim diferents arxius.
+Ara accedir amb la comanda nano al arxiu uo.ldif i cambiem per a les nostres dades com el domini. 
+<img alt="Comanda" src="../imatgesSprint3/17.png" /></p>
+<p>Ara nem al arxiu grup.ldif i fem quasi les mateixes configuracions. 
+<img alt="Comanda" src="../imatgesSprint3/18.png" /></p>
+<p>Ens inisirim en el usu.ldif i fem diferents configuracions d'usuaris.
+<img alt="Comanda" src="../imatgesSprint3/19.png" /></p>
+<p>Ara fem un ldapadd i afegim les configuracions que hem fet anteriorment, es te que dir esta es la segona opció de com afegir el nostre domini. Si tornem a fer un slapcat podem veure els canvis fets.
+<img alt="Comanda" src="../imatgesSprint3/20.png" /></p>
+<p>Si tornem a fer un slapcat podem veure els canvis fets.
+<img alt="Comanda" src="../imatgesSprint3/21.png" /></p>
+<h2 id="unir-equips-al-domini">Unir equips al domini</h2>
+<p>Ara nem a unir el nostre primer client.
+En primer lloc instal·lem ambla següent comanda, Al finalitzar la següent comanda sens obrira la següent finetra.
+<img alt="Comanda" src="../imatgesSprint3/22.png" /></p>
+<p>Si per algun cas al instal·lar el anterior apt i hem saltat la configuració posem la següent comanda per poder configurar el LDAP.
+Pisem que volem congifurar el LDAP.
+<img alt="Comanda" src="../imatgesSprint3/24.png" /></p>
+<p>Posem la ip del nostre servidor i acceptar.
+<img alt="Comanda" src="../imatgesSprint3/25.png" /></p>
+<p>Posem el nostre domini que hem posat anteriorment al fer la instal·lació en el SERVIDOR.
+<img alt="Comanda" src="../imatgesSprint3/26.png" /></p>
+<p>Posem la versio 3.
+<img alt="Comanda" src="../imatgesSprint3/27.png" /></p>
+<p>Cliquem la opcio Sí.
+<img alt="Comanda" src="../imatgesSprint3/28.png" /></p>
+<p>Cliquem la opcio Sí.
+<img alt="Comanda" src="../imatgesSprint3/29.png" /></p>
+<p>Posem admin per tener permisos de admin.
+<img alt="Comanda" src="../imatgesSprint3/30.png" /></p>
+<p>Ara posem la contrasenya que hem posat al SERVIDOR i la tornem a posar per confirmar.
+<img alt="Comanda" src="../imatgesSprint3/12.png" />
+<img alt="Comanda" src="../imatgesSprint3/13.png" /></p>
+<p>Tornem a posar els priviligis que tindrem.
+<img alt="Comanda" src="../imatgesSprint3/31.png" /></p>
+<p>Posem md5 que es per encriptar la contrasenyar.
+<img alt="Comanda" src="../imatgesSprint3/32.png" /></p>
+<p>Nem al arxiu /etc/nsswitch.conf  i fiquem exactament com es mostra en la imatge següent.
+<img alt="Comanda" src="../imatgesSprint3/33.png" /></p>
+<p>Ara nem al arxiu /etc/pam.d/common-session i posem la comanda que esta en el requadre roig.
+<img alt="Comanda" src="../imatgesSprint3/34.png" /></p>
+<p>Cambiem les següents en el fitxer 50-Ubuntu.conf.
+<img alt="Comanda" src="../imatgesSprint3/35.png" /></p>
+<p>Ara fem un use alu 1 i accedim al alu1 desde codi i fem un whoami per veure els privilegis que tenim i veem que tenim de alu1.
+<img alt="Comanda" src="../imatgesSprint3/36.png" /></p>
+<h2 id="gestio-de-domini">Gestió de domini</h2>
+<p>Per gestionar utlitzarem diferents comandes de ldap.</p>
+<p>Fem un rconfigure per esborrar altres usuaris o grups creats anteriorment.
+<img alt="Comanda" src="../imatgesSprint3/37.png" /></p>
+<p>Ara agafaem un fitxer i agreguem dades que vulguem amb la seva ou i etc...
+<img alt="Comanda" src="../imatgesSprint3/38.png" /></p>
+<p>Fem la següent comanda per afegir els usuaris que tenim al fitxer .ldif i posem la contra que hem dir anteriorment.
+<img alt="Comanda" src="../imatgesSprint3/39.png" /></p>
+<p>Fem un slapcat i podem observar els usuaris que hem dit anteriorment.
+<img alt="Comanda" src="../imatgesSprint3/40.png" /></p>
+<p>Ara podem utilitzar aquesta comanda per poder fer una busqueda.
+<img alt="Comanda" src="../imatgesSprint3/41.png" /></p>
+<p>També podem utilitzar diferents filtres per fer unes bones busquedes com ara farem pel seu mail.
+<img alt="Comanda" src="../imatgesSprint3/42.png" /></p>
+<p>També podem utilitzar pel filtre groups
+<img alt="Comanda" src="../imatgesSprint3/43.png" /></p>
+<p>Ara podem utilitzar la comanda ldapmodify. Primer crearem un document que es dira proves.ldif i aqui podrem posar totes les modificacións que farem.
+<img alt="Comanda" src="../imatgesSprint3/44.png" /></p>
+<p>I farem esta comanda per fer la modificació. Podrem observar que ens posant que se esta modificant.
+<img alt="Comanda" src="../imatgesSprint3/45.png" /></p>
+<p>Ara en ves de utilitzar la comanda ldapdelete utilitzem la de ldapmodify i al arxiu posem en el lloc de type posem delete aixi podem esborrar els usuaris.
+<img alt="Comanda" src="../imatgesSprint3/46.png" /></p>
+<p>Ara tornem a fer la comanda anterior i podem observar que esta borrant al usuari.
+<img alt="Comanda" src="../imatgesSprint3/47.png" /></p>
+<p>Ara fem una altra modificació afegint un mail a un usuari especific.
+<img alt="Comanda" src="../imatgesSprint3/48.png" /></p>
+<p>I realitzem la comanda i fem un search.</p>
+<p><img alt="Comanda" src="../imatgesSprint3/49.png" /></p>
+<p>Ara farem una altra modificació de tipo modrdn i cambiarem el cn a MiguelAngel.
+<img alt="Comanda" src="../imatgesSprint3/50.png" /></p>
+<p>Tornem a fer la comanda ldapmodify i al fer un search podem observar que el cambi ha funcionat correctament.
+<img alt="Comanda" src="../imatgesSprint3/51.png" /></p>
+<h2 id="entorns-grafics">Entorns gràfics</h2>
+<h2 id="servidors-smb">Servidors SMB</h2>
+<h2 id="servidors-nfs">Servidors NFS</h2></div>
                 <footer>
     <div class="footer-buttons">
         <div class="previous"><a href="../sprint2/" title="Sprint 2"><span>Previous</span></a></div>
