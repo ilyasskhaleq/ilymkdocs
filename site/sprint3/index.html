@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
     <link rel="stylesheet" href="../css/theme.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-    <link rel="stylesheet" href="../css/extra.css">
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>
@@ -186,8 +185,136 @@ Pisem que volem congifurar el LDAP.
 <p>Tornem a fer la comanda ldapmodify i al fer un search podem observar que el cambi ha funcionat correctament.
 <img alt="Comanda" src="../imatgesSprint3/51.png" /></p>
 <h2 id="entorns-grafics">Entorns gràfics</h2>
+<p>Per utilitzar Entorns grafics utilitzarem el programa Apache Directory Studio i seguirem els següents pasos:</p>
+<p>En primer lloc accedim a la pagina oficial de Apache Directory i instal·lem el programam per a linux.
+<img alt="Comanda" src="../imatgesSprint3/100.png" /> </p>
+<p>Es possible que que ens faigue instal·lar el java, jo en el meu cas ja el tinc instal·lat. Accedim a la part superior en <code>LDAP</code>
+<img alt="Comanda" src="../imatgesSprint3/101.png" /> </p>
+<p>Posem nova connexió.
+<img alt="Comanda" src="../imatgesSprint3/102.png" /> </p>
+<p>Posem un nom a la connexió i la ip del server, i virifiquem la connectivitat.
+<img alt="Comanda" src="../imatgesSprint3/103.png" /> </p>
+<p>Ara posem el nostre domini i posem a verificar en aquest cas surt que ja esta verificat.
+<img alt="Comanda" src="../imatgesSprint3/104.png" /></p>
+<p>Ara agregarem un usuari per provar si funciona realment.</p>
+<p>Entrarem al nostre domini i fem oin posa <code>New Entry</code>.
+<img alt="Comanda" src="../imatgesSprint3/105.png" /> </p>
+<p>Posem que utilitzem un esquema existent.
+<img alt="Comanda" src="../imatgesSprint3/106.png" /> </p>
+<p>Posem els següents objectes que voldrem afegir.
+<img alt="Comanda" src="../imatgesSprint3/110.png" /> </p>
+<p>Agreguem les dades del nou usuari.
+<img alt="Comanda" src="../imatgesSprint3/107.png" /> </p>
+<p>Agreguem les següents dades i posem a finalitzar.
+<img alt="Comanda" src="../imatgesSprint3/111.png" /> </p>
+<p>Aqui ja podem veure que ja esta creat
+<img alt="Comanda" src="../imatgesSprint3/112.png" /> </p>
+<p>Ara es poder accedir amb l'usuari creat pero no he pogut.</p>
 <h2 id="servidors-smb">Servidors SMB</h2>
-<h2 id="servidors-nfs">Servidors NFS</h2></div>
+<h3 id="installacio-i-configuracio-server">INSTAL·LACIÓ I CONFIGURACIÓ SERVER</h3>
+<p>En primer lloc, en la maquina server utilitzem la següent comanda per instal·lar samba.
+<img alt="Comanda" src="../imatgesSprint3/52.png" /> </p>
+<p>Creem els següent directori que voldrem compartir amb els permisos necessaris. 
+<img alt="Comanda" src="../imatgesSprint3/53.png" /></p>
+<p>En el arxiu <code>etc/samba/smb.conf</code> afegim les següents dades per a que els clients puguin tenir permiso en la carpeta que compartirem.
+<img alt="Comanda" src="../imatgesSprint3/54.png" /></p>
+<p>Sempre que fem algún canvi en aquest arxiu estem obligats (Si volem que funcion) a fer la següent comanda <code>systemctl restart smbd nmbd</code>
+<img alt="Comanda" src="../imatgesSprint3/55.png" /></p>
+<p>Utilitzem aquest acomanda per crear els usuaris que puguin accedir a la carpeta.
+Seguirem la següent comanda per crear usuaris i grups.
+<img alt="Comanda" src="../imatgesSprint3/56.png" /></p>
+<p><img alt="Comanda" src="../imatgesSprint3/57.png" /></p>
+<p>Le posem una contrasenya amb la comanda <code>smbpasswd -a "blau"</code>, aquesta contrasenya la necessitarem al voler accedir a la carpeta.
+<img alt="Comanda" src="../imatgesSprint3/58.png" /></p>
+<p>Ara tornem a l'arxiu <code>etc/samba/smb.conf</code> i fem els següents canvis, Principalment son els permisos que lis hi donem als usuaris.
+<img alt="Comanda" src="../imatgesSprint3/59.png" /></p>
+<h3 id="installacio-i-proves-client">INSTAL·LACIÓ  I PROVES CLIENT</h3>
+<p>En el client ubuntu fem la instal·lació del smbclient.
+<img alt="Comanda" src="../imatgesSprint3/60.png" /></p>
+<p>Nem a Fitxers, altres ubicacions, i a la barra de baix posem la següent URL: <code>smb://10.0.2.15/proves</code> i posem connectar. 
+<img alt="Comanda" src="../imatgesSprint3/61.png" /></p>
+<p>Posem per provar si podem accedir amb permisos d'anonim.
+<img alt="Comanda" src="../imatgesSprint3/62.png" /></p>
+<p>Amb les modificacions que tenim en el fitxer <code>etc/samba/smb.conf</code> no seria possible crear o fer modificacions amb els permisos de anonim.
+<img alt="Comanda" src="../imatgesSprint3/63.png" /></p>
+<p>Per arreglar aquest error posem el <code>read only = yes</code> en comentaris.
+<img alt="Comanda" src="../imatgesSprint3/64.png" /></p>
+<p>Com he dit abans hem de fer un restart al smbd nmbd
+<img alt="Comanda" src="../imatgesSprint3/65.png" /></p>
+<p>I ara finalment podem crear una carpeta anominada anonim.
+<img alt="Comanda" src="../imatgesSprint3/66.png" /></p>
+<p>Ara provem de entrar amb el usuari blau i la contrasenya que vam posar al crear.
+<img alt="Comanda" src="../imatgesSprint3/67.png" /></p>
+<p>Creem una carpeta per probar si podem crear i com se pot veure hem creat la carpeta anominda blau.
+<img alt="Comanda" src="../imatgesSprint3/68.png" /></p>
+<p>Nem al servidor i podem veure que se han correctament i amb els permisos del seu creador.
+<img alt="Comanda" src="../imatgesSprint3/69.png" /></p>
+<p>Ara porobem en roig i com antes en el fitxer <code>etc/samba/smb.conf</code> hem posat que denegem el acces al usuari roig.
+<img alt="Comanda" src="../imatgesSprint3/70.png" /></p>
+<p>Ara probem amb l'usuari groc.
+<img alt="Comanda" src="../imatgesSprint3/71.png" /></p>
+<p>Podem accedir pero nomes podem llegir
+<img alt="Comanda" src="../imatgesSprint3/72.png" />
+No podem crear ni esborrar.</p>
+<h2 id="servidors-nfs">Servidors NFS</h2>
+<p>Per a compartir fitxers en NFS en el Servidor hem de instal·lar el nfs-kernel-server.
+<img alt="Comanda" src="../imatgesSprint3/74.png" /></p>
+<p>Fem un <code>systemctl status nfs-srever</code> per veure el estat.
+<img alt="Comanda" src="../imatgesSprint3/75.png" /></p>
+<h3 id="installacio-pasrt-client-ubuntu">Instal·lació pasrt client ubuntu</h3>
+<p>Ara nem al client ubutnu i fem la següent comanda per instal·lar 
+<img alt="Comanda" src="../imatgesSprint3/76.png" /></p>
+<h3 id="installacio-pasrt-client-windows">Instal·lació pasrt client windows</h3>
+<p>Per fer la instal·lació en windows necesitem fer diferent pasos per poder activar-ho.
+En primer lloc nem al <code>Programes i caracteristiques</code>:
+<img alt="Comanda" src="../imatgesSprint3/77.png" /></p>
+<p>A la part esquerra i cliquem sobre <code>Activar o desactivar las caracteristicas de Windows</code>:
+<img alt="Comanda" src="../imatgesSprint3/78.png" /></p>
+<p>Ens ubiquem   a la caracteristica de <code>Servicios para NFS</code>.
+<img alt="Comanda" src="../imatgesSprint3/79.png" /></p>
+<p>I posem acceptar i se ens actualitzara.
+<img alt="Comanda" src="../imatgesSprint3/80.png" /></p>
+<h3 id="comparticio-carpeta-al-server-i-proves-en-el-serverc">Compartició carpeta al server i proves en el serverç</h3>
+<p>Creem la carpeta que volem compartir.
+<img alt="Comanda" src="../imatgesSprint3/81.png" /></p>
+<p>Li assignem els permisos a la carpeta i ho comprovem.
+<img alt="Comanda" src="../imatgesSprint3/82.png" /></p>
+<p>En el arxiu <code>/etc/exports</code> afegim el següent codi.
+<img alt="Comanda" src="../imatgesSprint3/83.png" /></p>
+<p>I reiniciem el nfs-kernel-server
+<img alt="Comanda" src="../imatgesSprint3/84.png" /></p>
+<p>Ara nem al client windows i entrem dins de la ip del server 
+<img alt="Comanda" src="../imatgesSprint3/85.png" /></p>
+<p>Com podem veure ja estem dins de la carpeta i creem un arxiu.txt.
+<img alt="Comanda" src="../imatgesSprint3/86.png" /></p>
+<p>Si entrem al server i fem un ls, podem veure que se ha creat.
+<img alt="Comanda" src="../imatgesSprint3/87.png" /></p>
+<p>Si posem en acces directe, cada vegada que iniciem sissió podrem accedir a la carpeta.
+<img alt="Comanda" src="../imatgesSprint3/88.png" /></p>
+<p>Ara accedim al client ubuntu.</p>
+<p>Accedim al directori /mnt i creem una carpeta nfs i li assignem permisos adients.
+Proximament muntem la carpeta amb la IP del Server i al fer la comanda <code>df -h</code> podrem veure el que hem fet.
+<img alt="Comanda" src="../imatgesSprint3/89.png" /></p>
+<p>accedim a /nfs i creem el arxiu <code>aaaa</code> 
+<img alt="Comanda" src="../imatgesSprint3/90.png" /></p>
+<p>Accedim al Server i  fem un ls - l podem veure el arxiu creat.
+<img alt="Comanda" src="../imatgesSprint3/91.png" /></p>
+<h3 id="perfils-mobils-ubuntu-ldap">Perfils mobils (Ubuntu LDAP)</h3>
+<p>Ara realitzarem els perfils mobils amb el client Ubunt.</p>
+<p>Anirem a l'arrel on crearem la carpeta perfils amb els següents permissos.
+<img alt="Comanda" src="../imatgesSprint3/92.png" /></p>
+<p>Accedirem al arxiu <code>/etc/exports</code> i afegirem el següent codi.
+<img alt="Comanda" src="../imatgesSprint3/98.png" /></p>
+<p>Fem un reinici del <code>nfs-kernel-server</code>
+<img alt="Comanda" src="../imatgesSprint3/94.png" /></p>
+<p>Accedirem al arxiu <code>usu.ldif</code> i modifiquem els següents parametres, que basicament son el nom del usuari, on es creara el home del usuari (Quan accedim) i la contrasenya.
+<img alt="Comanda" src="../imatgesSprint3/95.png" /></p>
+<p>Realitzem el <code>ldapadd</code> del usuari que hem modificat anteriorment
+<img alt="Comanda" src="../imatgesSprint3/96.png" /></p>
+<p>Accedim al <code>/etc/fstab</code> i agreguem el següent codi.
+<img alt="Comanda" src="../imatgesSprint3/97.png" /></p>
+<p>Cal afegir que la correció que vam parlar que fariem ja esta feta pero no hem tingut resultats ja que la mquina(client) hem petaba.</p>
+<p><img alt="Comanda" src="../imatgesSprint3/99.png" /></p></div>
                 <footer>
     <div class="footer-buttons">
         <div class="previous"><a href="../sprint2/" title="Sprint 2"><span>Previous</span></a></div>

@@ -2,13 +2,6 @@ site_name: Ilyass Khaleq Mansourui
 theme:
   name: "ivory"
 
-
-
-extra_css:
-  - css/extra.css
-
-
-
 nav:
   - Introducción: introduccio.md
   - Ubuntu:

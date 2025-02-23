@@ -173,5 +173,216 @@ Tornem a fer la comanda ldapmodify i al fer un search podem observar que el camb
 
 
 ## Entorns gràfics
+
+Per utilitzar Entorns grafics utilitzarem el programa Apache Directory Studio i seguirem els següents pasos:
+
+En primer lloc accedim a la pagina oficial de Apache Directory i instal·lem el programam per a linux.
+![Comanda](./imatgesSprint3/100.png) 
+
+Es possible que que ens faigue instal·lar el java, jo en el meu cas ja el tinc instal·lat. Accedim a la part superior en `LDAP`
+![Comanda](./imatgesSprint3/101.png) 
+
+Posem nova connexió.
+![Comanda](./imatgesSprint3/102.png) 
+
+Posem un nom a la connexió i la ip del server, i virifiquem la connectivitat.
+![Comanda](./imatgesSprint3/103.png) 
+
+Ara posem el nostre domini i posem a verificar en aquest cas surt que ja esta verificat.
+![Comanda](./imatgesSprint3/104.png)
+
+Ara agregarem un usuari per provar si funciona realment.
+
+Entrarem al nostre domini i fem oin posa `New Entry`.
+![Comanda](./imatgesSprint3/105.png) 
+
+Posem que utilitzem un esquema existent.
+![Comanda](./imatgesSprint3/106.png) 
+
+Posem els següents objectes que voldrem afegir.
+![Comanda](./imatgesSprint3/110.png) 
+
+
+Agreguem les dades del nou usuari.
+![Comanda](./imatgesSprint3/107.png) 
+
+Agreguem les següents dades i posem a finalitzar.
+![Comanda](./imatgesSprint3/111.png) 
+
+Aqui ja podem veure que ja esta creat
+![Comanda](./imatgesSprint3/112.png) 
+
+Ara es poder accedir amb l'usuari creat pero no he pogut.
+
+
+
+
+
+
+
+
 ## Servidors SMB 
+
+### INSTAL·LACIÓ I CONFIGURACIÓ SERVER
+
+En primer lloc, en la maquina server utilitzem la següent comanda per instal·lar samba.
+![Comanda](./imatgesSprint3/52.png) 
+
+Creem els següent directori que voldrem compartir amb els permisos necessaris. 
+![Comanda](./imatgesSprint3/53.png)
+
+En el arxiu `etc/samba/smb.conf` afegim les següents dades per a que els clients puguin tenir permiso en la carpeta que compartirem.
+![Comanda](./imatgesSprint3/54.png)
+
+Sempre que fem algún canvi en aquest arxiu estem obligats (Si volem que funcion) a fer la següent comanda `systemctl restart smbd nmbd`
+![Comanda](./imatgesSprint3/55.png)
+
+Utilitzem aquest acomanda per crear els usuaris que puguin accedir a la carpeta.
+Seguirem la següent comanda per crear usuaris i grups.
+![Comanda](./imatgesSprint3/56.png)
+
+![Comanda](./imatgesSprint3/57.png)
+
+Le posem una contrasenya amb la comanda `smbpasswd -a "blau"`, aquesta contrasenya la necessitarem al voler accedir a la carpeta.
+![Comanda](./imatgesSprint3/58.png)
+
+Ara tornem a l'arxiu `etc/samba/smb.conf` i fem els següents canvis, Principalment son els permisos que lis hi donem als usuaris.
+![Comanda](./imatgesSprint3/59.png)
+
+### INSTAL·LACIÓ  I PROVES CLIENT
+
+En el client ubuntu fem la instal·lació del smbclient.
+![Comanda](./imatgesSprint3/60.png)
+
+Nem a Fitxers, altres ubicacions, i a la barra de baix posem la següent URL: `smb://10.0.2.15/proves` i posem connectar. 
+![Comanda](./imatgesSprint3/61.png)
+
+Posem per provar si podem accedir amb permisos d'anonim.
+![Comanda](./imatgesSprint3/62.png)
+
+Amb les modificacions que tenim en el fitxer `etc/samba/smb.conf` no seria possible crear o fer modificacions amb els permisos de anonim.
+![Comanda](./imatgesSprint3/63.png)
+
+Per arreglar aquest error posem el `read only = yes` en comentaris.
+![Comanda](./imatgesSprint3/64.png)
+
+Com he dit abans hem de fer un restart al smbd nmbd
+![Comanda](./imatgesSprint3/65.png)
+
+I ara finalment podem crear una carpeta anominada anonim.
+![Comanda](./imatgesSprint3/66.png)
+
+Ara provem de entrar amb el usuari blau i la contrasenya que vam posar al crear.
+![Comanda](./imatgesSprint3/67.png)
+
+Creem una carpeta per probar si podem crear i com se pot veure hem creat la carpeta anominda blau.
+![Comanda](./imatgesSprint3/68.png)
+
+Nem al servidor i podem veure que se han correctament i amb els permisos del seu creador.
+![Comanda](./imatgesSprint3/69.png)
+
+Ara porobem en roig i com antes en el fitxer `etc/samba/smb.conf` hem posat que denegem el acces al usuari roig.
+![Comanda](./imatgesSprint3/70.png)
+
+Ara probem amb l'usuari groc.
+![Comanda](./imatgesSprint3/71.png)
+
+Podem accedir pero nomes podem llegir
+![Comanda](./imatgesSprint3/72.png)
+No podem crear ni esborrar.
+
+
+
 ## Servidors NFS
+
+Per a compartir fitxers en NFS en el Servidor hem de instal·lar el nfs-kernel-server.
+![Comanda](./imatgesSprint3/74.png)
+
+Fem un `systemctl status nfs-srever` per veure el estat.
+![Comanda](./imatgesSprint3/75.png)
+
+### Instal·lació pasrt client ubuntu
+Ara nem al client ubutnu i fem la següent comanda per instal·lar 
+![Comanda](./imatgesSprint3/76.png)
+
+### Instal·lació pasrt client windows
+
+Per fer la instal·lació en windows necesitem fer diferent pasos per poder activar-ho.
+En primer lloc nem al `Programes i caracteristiques`:
+![Comanda](./imatgesSprint3/77.png)
+
+A la part esquerra i cliquem sobre `Activar o desactivar las caracteristicas de Windows`:
+![Comanda](./imatgesSprint3/78.png)
+
+Ens ubiquem   a la caracteristica de `Servicios para NFS`.
+![Comanda](./imatgesSprint3/79.png)
+
+I posem acceptar i se ens actualitzara.
+![Comanda](./imatgesSprint3/80.png)
+
+### Compartició carpeta al server i proves en el serverç
+
+Creem la carpeta que volem compartir.
+![Comanda](./imatgesSprint3/81.png)
+
+Li assignem els permisos a la carpeta i ho comprovem.
+![Comanda](./imatgesSprint3/82.png)
+
+En el arxiu `/etc/exports` afegim el següent codi.
+![Comanda](./imatgesSprint3/83.png)
+
+I reiniciem el nfs-kernel-server
+![Comanda](./imatgesSprint3/84.png)
+
+Ara nem al client windows i entrem dins de la ip del server 
+![Comanda](./imatgesSprint3/85.png)
+
+Com podem veure ja estem dins de la carpeta i creem un arxiu.txt.
+![Comanda](./imatgesSprint3/86.png)
+
+Si entrem al server i fem un ls, podem veure que se ha creat.
+![Comanda](./imatgesSprint3/87.png)
+
+Si posem en acces directe, cada vegada que iniciem sissió podrem accedir a la carpeta.
+![Comanda](./imatgesSprint3/88.png)
+
+Ara accedim al client ubuntu.
+
+Accedim al directori /mnt i creem una carpeta nfs i li assignem permisos adients.
+Proximament muntem la carpeta amb la IP del Server i al fer la comanda `df -h` podrem veure el que hem fet.
+![Comanda](./imatgesSprint3/89.png)
+
+accedim a /nfs i creem el arxiu `aaaa` 
+![Comanda](./imatgesSprint3/90.png)
+
+Accedim al Server i  fem un ls - l podem veure el arxiu creat.
+![Comanda](./imatgesSprint3/91.png)
+
+### Perfils mobils (Ubuntu LDAP)
+
+Ara realitzarem els perfils mobils amb el client Ubunt.
+
+Anirem a l'arrel on crearem la carpeta perfils amb els següents permissos.
+![Comanda](./imatgesSprint3/92.png)
+
+Accedirem al arxiu `/etc/exports` i afegirem el següent codi.
+![Comanda](./imatgesSprint3/98.png)
+
+Fem un reinici del `nfs-kernel-server`
+![Comanda](./imatgesSprint3/94.png)
+
+Accedirem al arxiu `usu.ldif` i modifiquem els següents parametres, que basicament son el nom del usuari, on es creara el home del usuari (Quan accedim) i la contrasenya.
+![Comanda](./imatgesSprint3/95.png)
+
+Realitzem el `ldapadd` del usuari que hem modificat anteriorment
+![Comanda](./imatgesSprint3/96.png)
+
+Accedim al `/etc/fstab` i agreguem el següent codi.
+![Comanda](./imatgesSprint3/97.png)
+
+Cal afegir que la correció que vam parlar que fariem ja esta feta pero no hem tingut resultats ja que la mquina(client) hem petaba.
+
+![Comanda](./imatgesSprint3/99.png)
+
+
+
