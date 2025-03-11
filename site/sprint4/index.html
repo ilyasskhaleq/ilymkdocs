@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <title>Sprint 4 &mdash; Ilyass Khaleq Mansourui</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script> 
+</head>
+
+<body ontouchstart="">
+    <div id="container">
+        <aside>
+            <div class="home">
+                <div class="title">
+                    <button class="hamburger"></button>
+                    <a href=".." class="site-name"> Ilyass Khaleq Mansourui</a>
+                </div>
+                <div class="search">
+                    <div role="search">
+    <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+        <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    </form>
+</div>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul class="root">
+                    <li class="toctree-l1"><a class="nav-item" href="../introduccio/">Introducción</a></li>
+                    <li class="toctree-l1"><button class="section nav-item">Ubuntu</button>
+<ul class="subnav">
+    <li class="toctree-l2"><a class="nav-item" href="../sprint2/">Sprint 2</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../sprint3/">Sprint 3</a></li>
+    <li class="toctree-l2 current"><a class="nav-item current" href="./">Sprint 4</a>
+<ul class="subnav">
+<li class="toctree-l3"><a class="nav-item toc" href="#tipus-de-raid">Tipus de RAID</a></li>
+<li class="toctree-l3"><a class="nav-item toc" href="#raid-1">RAID 1</a></li>
+<li class="toctree-l3"><a class="nav-item toc" href="#raid-5">RAID 5</a></li>
+</ul></li>
+</ul></li>
+                </ul>
+            </nav>
+            <div class="repo">
+    <div class="previous"><a href="../sprint3/">&laquo; Previous</a></div>
+</div>
+        </aside>
+        <div id="spacer"><button class="arrow"></button></div>
+        <main>
+            <div class="home-top">
+                <button class="hamburger"></button>
+                <a href=".." class="site-name"> Ilyass Khaleq Mansourui</a>
+            </div>
+            <div id="main">
+                <nav class="breadcrumbs">
+<ul>
+    <li>Ubuntu</li>
+</ul>
+</nav>
+                <div id="content"><h1 id="raids-sistemes-demmagatzematge">RAIDS (Sistemes d’emmagatzematge)</h1>
+<p>Els RAID serveixen per millorar la seguretat i el rendiment de l’emmagatzematge mitjançant la combinació de diversos discos. Aquests sistemes ofereixen diferents nivells de redundància i velocitat segons la configuració escollida.</p>
+<h2 id="tipus-de-raid">Tipus de RAID</h2>
+<p><strong>RAID 0</strong>: Utilitza almenys dos discos i distribueix les dades entre ells per millorar el rendiment. No proporciona redundància: si un disc falla, es perden totes les dades.</p>
+<p><strong>RAID 1</strong>: Consta de dos discos en mirall, on la informació es copia automàticament d’un a l’altre. Ofereix alta seguretat però redueix la capacitat efectiva a la meitat.</p>
+<p><strong>RAID 5</strong>: Necessita almenys tres discos. Distribueix les dades i la informació de paritat entre tots els discos, permetent recuperar les dades en cas de fallada d’un disc. Equilibra seguretat i rendiment.</p>
+<p><strong>RAID 6</strong>: Similar al RAID 5, però amb un nivell addicional de paritat. Requereix un mínim de quatre discos i pot suportar la fallada de dos discos sense pèrdua de dades.</p>
+<p><strong>Per què és millor fer volums?</strong>
+Els volums lògics permeten una gestió més flexible de l’espai d’emmagatzematge, facilitant la redimensió i la reorganització de les dades sense necessitat de reformatejar o perdre informació.</p>
+<h2 id="raid-1">RAID 1</h2>
+<p>En primer lloc instal·lem el <code>mdadm</code>.
+<img alt="Comanda" src="../imatgessprint4/1.png" /><br />
+Creem les particions del dos discos, primer del dis sdb.
+<img alt="Comanda" src="../imatgessprint4/2.png" /><br />
+Ar creem la partició en el disc sdc amb els següents parametres.
+<img alt="Comanda" src="../imatgessprint4/3.png" /><br />
+Com podem observar al fer el <code>fdisk -l</code> podrem observar les particions que hem fet.
+<img alt="Comanda" src="../imatgessprint4/4.png" /><br />
+Creem la carpeta raid1 i fem la següent comanda.
+<img alt="Comanda" src="../imatgessprint4/5.png" /><br />
+Cambiem el format a <code>ext4</code>
+<img alt="Comanda" src="../imatgessprint4/6.png" /><br />
+Al fer la següent comanda podrem veure que se ha fet be el raid.
+<img alt="Comanda" src="../imatgessprint4/7.png" /><br />
+Passem els que ens dona el scan al fitxer <code>/etc/mdadm/mdadm.conf</code>.
+<img alt="Comanda" src="../imatgessprint4/8.png" /><br />
+Seguidament modifiquem aquest fitxer i agreguem el següent codi.
+<img alt="Comanda" src="../imatgessprint4/9.png" /><br />
+En el arxiu <code>/etc/fstab</code> agreguem el ultim codi.
+<img alt="Comanda" src="../imatgessprint4/10.png" /><br />
+Abans de fer un reboot muntem el disc i fem reinicici dels serveis.
+<img alt="Comanda" src="../imatgessprint4/11.png" /><br />
+Ya ho tenim tot preparat per fer proves.
+<img alt="Comanda" src="../imatgessprint4/12.png" /><br />
+Com ha primera prova crearem dos fitxers i ho posarem dins del raid.
+<img alt="Comanda" src="../imatgessprint4/13.png" /><br />
+Borrem un el disc i al fer la comanda per veure els detalls veurem que esta borrada. 
+<img alt="Comanda" src="../imatgessprint4/16.png" /><br />
+Ara ens posarem a esborrar el raid amb les següents comandes.
+<img alt="Comanda" src="../imatgessprint4/18.png" /><br />
+com podem veure no ho podem borrar facilment, i utilitzarem la comanda de <code>zero-superblock</code>.
+<img alt="Comanda" src="../imatgessprint4/19.png" /><br />
+Com podem observar ja no tenim el raid.
+<img alt="Comanda" src="../imatgessprint4/20.png" />  </p>
+<h2 id="raid-5">RAID 5</h2>
+<p>En primer lloc creem 4 discos per fer el RAID 5.
+<img alt="Comanda" src="../imatgessprint4/RAID5/1.png" />
+Podem observar el 4 discos que hem afegit.
+<img alt="Comanda" src="../imatgessprint4/RAID5/2.png" /></p>
+<p>Aquest pas ho hem de fer amb els 4 discos.
+<img alt="Comanda" src="../imatgessprint4/RAID5/3.png" /></p>
+<p>Compodem observar el pas anterior ens ha funconat correctament.
+<img alt="Comanda" src="../imatgessprint4/RAID5/4.png" /></p>
+<p>Creem la carpeta que la anomenarem raid 5 i assignarem els permissos següents.
+<img alt="Comanda" src="../imatgessprint4/RAID5/5.png" /></p>
+<p>Ara creem el Raid amb la següent comanda.
+<img alt="Comanda" src="../imatgessprint4/RAID5/6.png" /></p>
+<p>Ara posem el format <code>ext4</code>
+<img alt="Comanda" src="../imatgessprint4/RAID5/7.png" /></p>
+<p>Ara fem la comanda següent que mou tot lo de detalls al fitxer següent.
+<img alt="Comanda" src="../imatgessprint4/RAID5/8.png" /></p>
+<p>En el fitxer agreguem les següent dades.
+<img alt="Comanda" src="../imatgessprint4/RAID5/9.png" /></p>
+<p>En el fitxer <code>/etc/fstab</code> agregem el que esta subratllat a la següent imatge.
+<img alt="Comanda" src="../imatgessprint4/RAID5/10.png" /></p>
+<p>Com podem veure al fer la següen comanda podem observar que tenim els 4 discos activats.
+<img alt="Comanda" src="../imatgessprint4/RAID5/11.png" /></p>
+<p>Ara ens disposem a fer proves:
+Creem arxius per poder fer proves amb funcionabilitat del raid
+<img alt="Comanda" src="../imatgessprint4/RAID5/12.png" /></p>
+<p>Desactivem un disc i comprovem si encara tenim la informació i comprovem que encara tenim la informació.
+<img alt="Comanda" src="../imatgessprint4/RAID5/13.png" /></p>
+<p>Seguiren fent proves fins que ens surtigue error i podem comprovar que el raid no pot funcionar solament amb dos discos.
+Igualment ens el descativa pero el sistema ens dona una alerta.
+<img alt="Comanda" src="../imatgessprint4/RAID5/14.png" /></p>
+<p>Creem un nou disc per pasar la informació a aquest.
+<img alt="Comanda" src="../imatgessprint4/RAID5/14.png" /></p>
+<p>Amb la següent comanda traspassem les dades dels discs anteriors a aquest.
+En el meu cas em dona un problema de superblock.
+<img alt="Comanda" src="../imatgessprint4/RAID5/16.png" /></p>
+<p>Al fer els detalls podem observar que no tenim el raid ja que segurament se me ha petat.
+<img alt="Comanda" src="../imatgessprint4/RAID5/17.png" /></p>
+<p>Ara finalmet esborrem el RAID 5, com anteriorment he borrat els dos discos manualment se ha petat i al esborrar el raid nomes se me han borrat 2 discos.
+<img alt="Comanda" src="../imatgessprint4/19.png" /> </p></div>
+                <footer>
+    <div class="footer-buttons">
+        <div class="previous"><a href="../sprint3/" title="Sprint 3"><span>Previous</span></a></div>
+    </div>
+    <div class="footer-note">
+        <p>
+            Built with <a href="http://www.mkdocs.org">MkDocs</a> using
+            <a href="https://github.com/daizutabi/mkdocs-ivory">Ivory theme</a>.
+        </p>
+    </div>
+</footer>
+            </div>
+        </main>
+    </div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+    <script src="../search/main.js"></script>
+</body>
+
+</html>
