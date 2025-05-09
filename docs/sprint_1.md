@@ -7,6 +7,7 @@ En primer lloc instal·larem la iso que la podrem trobar en el seguent enllaç:
 https://software-static.download.prss.microsoft.com/sg/download/888969d5-f34g-4e03-ac9d-1f9786c66749/SERVER_EVAL_x64FRE_es-es.iso
 
 I creem la nova maquina amb la iso.
+
 ![Comanda](./Projecte2/Sprint1/_1.png) 
 
 Procedim a la configuració de la maquina.
