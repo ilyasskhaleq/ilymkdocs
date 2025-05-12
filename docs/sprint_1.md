@@ -8,54 +8,54 @@ https://software-static.download.prss.microsoft.com/sg/download/888969d5-f34g-4e
 
 I creem la nova maquina amb la iso.
 
-![Comanda](./Projecte2/Sprint1/_1.png) 
+![Comanda](./Projecte2/Sprint1/111.png) 
 
 Procedim a la configuració de la maquina.
-![Comanda](./Projecte2/Sprint1/_2.png) 
+![Comanda](./Projecte2/Sprint1/112.png) 
 
 I installarem el servidor de Windows Server.
-![Comanda](./Projecte2/Sprint1/_3.png) 
+![Comanda](./Projecte2/Sprint1/113.png) 
 
 Seleccionarem el sistema operatiu que volem instalar.
-![Comanda](./Projecte2/Sprint1/_4.png) 
+![Comanda](./Projecte2/Sprint1/114.png) 
 
 Posem la instal·lació de personalització ja que podem seleccionar la partició on volem instal·lar el sistema operatiu.
-![Comanda](./Projecte2/Sprint1/_5.png) 
+![Comanda](./Projecte2/Sprint1/115.png) 
 
 Selccionem la partició.
-![Comanda](./Projecte2/Sprint1/_6.png)
+![Comanda](./Projecte2/Sprint1/116.png)
 
 I esperem fins que s'instal·li el sistema operatiu.
-![Comanda](./Projecte2/Sprint1/_7.png) 
+![Comanda](./Projecte2/Sprint1/117.png) 
 
 Al finalitzar la instal·lació, gestionarem la constrasenya de l'administrador del sistema operatiu.
-![Comanda](./Projecte2/Sprint1/_8.png) 
+![Comanda](./Projecte2/Sprint1/118.png) 
 
 Finalemt ja el tenim instal·lat. 
 Accedim:
-![Comanda](./Projecte2/Sprint1/_9.png) 
+![Comanda](./Projecte2/Sprint1/119.png) 
 
 ## Xarxa bàsica
 
 Per configurar la xarxa estàtica hem de fer els seguents passos:
 
 Accedim al menú de configuració.
-![Comanda](./Projecte2/Sprint1/_10.png) 
+![Comanda](./Projecte2/Sprint1/1110.png) 
 
 Cliquem l'opció de cambiar opcions de red.
-![Comanda](./Projecte2/Sprint1/_11.png) 
+![Comanda](./Projecte2/Sprint1/1111.png) 
 
 Al protocol de ipv4 seleccionem propietats.
-![Comanda](./Projecte2/Sprint1/_12.png) 
+![Comanda](./Projecte2/Sprint1/1112.png) 
 
 I utilitzem la següent configuració d'IP.
-![Comanda](./Projecte2/Sprint1/_13.png) 
+![Comanda](./Projecte2/Sprint1/1113.png) 
 
 Per accedir al terminal de windows fem la combinació de tecles Win + R i escribim: cmd.
-![Comanda](./Projecte2/Sprint1/_14.png) 
+![Comanda](./Projecte2/Sprint1/1114.png) 
 
 Finalment realitzxem la següent comanda per poder visualitzar la ip del servidor. 
-![Comanda](./Projecte2/Sprint1/_15.png) 
+![Comanda](./Projecte2/Sprint1/1115.png) 
 
 
 ## Instal·lació SO (Windows 10)
