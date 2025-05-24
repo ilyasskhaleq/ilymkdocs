@@ -101,6 +101,28 @@ Com podem observar en surt que aquesta opció esta desactivada per defecte pero 
 Seguidament posem en crear i haurem de posar un nom al punt de restauració que he posat la data d'avui.
 ![Comanda](./Projecte2/Sprint1/13.png)  
 
+### Comprovació Punts de restauració
+Com podem observar creem un punt de restauració i a la esquerra podem observar que tenim el mozila descargat.
+![Comanda](./Projecte2/Sprint1/punts.png) 
+
+Seguidament desintal·lem mozila
+![Comanda](./Projecte2/Sprint1/punts1.png) 
+
+![Comanda](./Projecte2/Sprint1/punts2.png) 
+
+Nem a restaurar el amb el punt de restauració creat anteriorment.
+![Comanda](./Projecte2/Sprint1/punts3.png)
+
+Com podem obsrevar ens surt el punt anterior.
+![Comanda](./Projecte2/Sprint1/punts4.png) 
+
+Fiquem siguiente i ens reiniciara el sistema i ens surtira la següent pestanya al fer el reinci.
+![Comanda](./Projecte2/Sprint1/punts5.png)
+![Comanda](./Projecte2/Sprint1/punts7.png)
+
+I com podem observar tenim el mozila instal·lat.
+![Comanda](./Projecte2/Sprint1/punts6.png)  
+
 ## VIRTUALITZACIÓ
 En el buscador de windows volem buscar "Caracteristicas de windows".  
 ![Comanda](./Projecte2/Sprint1/14.png)
@@ -202,4 +224,47 @@ Seguim les instruccions fins descarregar l¡aplicació
 
 Finalement ja podem executar l'aplicació.
 ![Comanda](./Projecte2/Sprint1/26.png)  
+
+## Llicencies
+
+
+Per poder accedir a un servidor amb sistema operatiu Windows, és necessari disposar d’una llicència anomenada **CAL** (Client Access License). Aquesta permet que usuaris o dispositius puguin connectar-se legalment al servidor. Cal tenir en compte que la llicència del servidor només cobreix el propi equip, així que per a cada connexió externa caldrà una CAL addicional.
+
+Per tant, per configurar correctament un servidor Windows, necessitarem:
+
+- La llicència del servidor.
+- Les llicències dels dispositius o usuaris que s’hi connectin.
+- Les llicències **CAL** per autoritzar aquestes connexions.
+
+### Tipus de CAL
+
+Hi ha dues modalitats principals de llicència CAL:
+
+- **CAL per dispositiu:** Ideal quan diversos usuaris comparteixen un mateix dispositiu. Aquesta llicència cobreix l’accés del dispositiu, independentment de qui l’utilitzi.
+
+- **CAL per usuari:** Recomanada quan un mateix usuari es connecta al servidor des de múltiples dispositius (per exemple, ordinador, portàtil i tauleta).
+
+La tria entre un tipus o un altre depèn de les necessitats específiques de cada organització.
+
+### Tipus de llicències de Windows
+
+Cada versió del sistema operatiu Windows disposa de llicències diferents, segons l’ús previst:
+
+- **Home:** Pensada per a ús domèstic. No permet unir-se a dominis ni accedir a l’escriptori remot. No és recomanable per a entorns empresarials.
+
+- **Pro:** Inclou funcionalitats per a l’àmbit professional, com la unió a dominis i l’accés remot. És adequada per a petites empreses.
+
+- **Enterprise:** Ofereix totes les funcions de la versió Pro, més característiques avançades de seguretat i gestió. Està dissenyada per a grans empreses amb necessitats complexes.
+
+### Altres tipus de llicències
+
+També existeixen altres variants com:
+
+- **Education**
+- **Retail**
+- **OEM**
+
+Tot i que aquestes tenen finalitats específiques, no són rellevants per als temes tractats aquí. S’han mencionat només per tenir present que hi ha més opcions disponibles.
+
+
 

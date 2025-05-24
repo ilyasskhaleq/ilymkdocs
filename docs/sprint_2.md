@@ -76,10 +76,33 @@ Finalemnt accedim amb el usuari `noalumne` i podem observar que no ens deixa acc
 I si acceidm desde un usuari que pertany al grup iesbre podem observar que ens deixa accedir a la carpeta i que ens deixa crear fitxers.
 ![Comanda](./Projecte2/Sprint2/per6.png)
 
-## Sistemes de fitxers i particions
-Aquest apartat esta inclos en altres llocs de la practica.
 
 ## Còpies de Seguretat i automatizació
+
+Afegim un un nou disc.
+![Comanda](./Projecte2/Sprint2/copies1.png)
+
+I fem un apartició en NFTS amb el següent nom
+![Comanda](./Projecte2/Sprint2/copies2.png)
+Creem el següent script es un paregut que he trobat per internet.
+
+![Comanda](./Projecte2/Sprint2/copies3.png)
+
+Tenim el .bat i l'executem amb permisos admin.
+![Comanda](./Projecte2/Sprint2/copies4.png)
+
+Com podem observar ens crea una carepta al disc que hem creat abans
+![Comanda](./Projecte2/Sprint2/copies5.png)
+
+Ara per fer-ho automatic accedim a "Editor de directivas de grupo local" i nem a scripts i posem que se executen al iniciar sissió.
+![Comanda](./Projecte2/Sprint2/copies6.png)
+
+Accedim en un altre usuari i sens obrira un terminal pero es tancara al segon.
+![Comanda](./Projecte2/Sprint2/copies7.png)
+
+Com podem observar ens crea la carpeta del usuauri.
+![Comanda](./Projecte2/Sprint2/copies8.png)
+
 
 
 ## Quotes de disc
